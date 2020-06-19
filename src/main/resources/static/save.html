@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="bt/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bt/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="bt/js/jquery.js"></script>
+    <script type="text/javascript" src="bt/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div class="container">
+
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Username">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword2">ResetPassword</label>
+            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="ResetPassword">
+        </div>
+        <input id=sub type="button" class="btn btn-success form-control" value="Submit"></input>
+    </form>
+
+</div>
+
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+    $("#sub").click(function () {
+        // alert(123);
+
+        var username = $("#exampleInputEmail1").val();
+        var password = $("#exampleInputPassword1").val();
+        var repassword = $("#exampleInputPassword2").val();
+
+        //用户名是不是为空
+        if (username.length == 0) {
+            alert("用户名不能为空");
+            return; //不让程序继续执行下去（不会去校验密码了）
+        }
+
+        //密码是不是为空
+        if (password.length == 0) {
+            alert("密码不能为空");
+            return; //不让程序继续执行下去（不会去校验密码是否一致）
+        }
+
+        if (password != repassword) {
+            alert("两次密码不一致");
+            return; //不让程序继续执行下去（不会去提交表单了）
+
+        }
+        //封装数据，并提交给后端接口
+        var user = {
+            username: username,
+            password: password
+        };
+        //将实体类转化为Json数据
+        var userJson = JSON.stringify(user);
+        //提交给后端接口
+        $.post({
+            url:'user/save',
+            data:userJson,
+            contentType:'application/json',
+            success:function(data){
+                alert(data)
+            }
+        });
+
+
+    });
+</script>

@@ -39,16 +39,37 @@ public class UserController {
         return "redirect:/index.html";
     }
 
+    //保存用户
     @RequestMapping("save")
-    @ResponseBody
+    //@ResponseBody
     public String save(@RequestBody UserEntity userEntity){
 
         System.out.println("用户注册" + userEntity.toString());
 
         userService.save(userEntity);
 
-//        return "redirect:/index.html";
-        return "success";
+        return "redirect:/index.html"; //相当于返回json字符串
+        //return "success";
     }
+
+    //根据ID查询用户信息
+    @RequestMapping("getUserById")
+    @ResponseBody
+    public UserEntity getUserById(Integer id){
+        return userService.getUserById(id);
+    }
+
+    //根据ID修改用户信息
+    @RequestMapping("updataUserById")
+    @ResponseBody
+    public void updataUserById(@RequestBody UserEntity userEntity){
+
+        userService.updataUserById(userEntity);
+
+//        return "updataUserByIdSuccess";
+
+//        return "ok";
+    }
+
 
 }

@@ -39,6 +39,24 @@
 
     </insert>
 
+    <select id="getUserById" resultType="cn.yykjc.jiaochengdemo1.user.entity.UserEntity" parameterType="java.lang.Integer">
+
+        SELECT * FROM USER WHERE id=${id}
+
+    </select>
+
+    <update id="updataUserById" parameterType="cn.yykjc.jiaochengdemo1.user.entity.UserEntity">
+
+        UPDATE user
+        SET
+            username = #{username},
+            password = #{password}
+        WHERE
+            id = ${id};
+
+
+    </update>
+
 
 
 

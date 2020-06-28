@@ -31,4 +31,14 @@ public class UserServiceImpl implements UserService{
         userEntity.setStauts(1);
         userDao.save(userEntity);
     }
+
+    @Override
+    public UserEntity getUserById(Integer id) {
+        return userDao.getUserById(id);
+    }
+
+    @Override
+    public void updataUserById(UserEntity userEntity) {
+        userDao.updataUserById(userEntity);
+    }
 }
